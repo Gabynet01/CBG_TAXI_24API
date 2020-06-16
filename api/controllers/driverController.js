@@ -216,6 +216,30 @@ exports.drivers_within_distance = function (req, res) {
             return;
         }
 
+        // console.log("rooowsss", rows)
+        var coordinatesArray = [];
+
+        var allData = rows;
+
+        // for loop on the data to get the coordinates
+        var i;
+        for (i = 0; i < allData.length; i++) {
+            allData[i];
+            coordinatesArray.push(allData[i].coordinates)
+        }
+
+        console.log("coordinates", coordinatesArray.toString().split(','))
+
+        var finalPoints = coordinatesArray.toString().split(',');
+        var lat1 = finalPoints[0];
+        var lon1 = finalPoints[1];
+        var lat2 = finalPoints[2];
+        var lon2 = finalPoints[3];
+
+        // console.log("distance", calcCrow(lat1, lon1, lat2, lon2).toFixed(1))
+
+        // Total distance in KM
+        var distanceInKM = calcCrow(lat1, lon1, lat2, lon2).toFixed(1);
 
         // get the latitude and longitude
         function calcCrow(lat1, lon1, lat2, lon2) {
@@ -237,25 +261,22 @@ exports.drivers_within_distance = function (req, res) {
             return Value * Math.PI / 180;
         }
 
-        // console.log("rooowsss", rows)
-        var coordinatesArray = [];
-
-        // for loop on the data to get the coordinates
-        for (var i = 0; i <= rows.length; i++) {
-            var mainData = rows[i];
-            if (mainData.location !== undefined) {
-                console.log("mainData----->>>>>>", mainData.coordinates)
-            }
-
-            // push the cordinates into an array
-            coordinatesArray.push(mainData)
+        // check if the 
+        if (distanceInKM >= "3") {
+            res.json({
+                "code": successCode,
+                "message": "success",
+                "data": {"distance": distanceInKM + "KM", "drivers": rows}
+            })
+        }
+        else {
+            res.json({
+                "code": successCode,
+                "message": "success",
+                "data": {"distance": distanceInKM + "KM", "drivers": rows}
+            })
         }
 
-        console.log("arrayCoordinates", coordinatesArray.coordinates);
-        res.json({
-            "code": successCode,
-            "message": "success",
-            "data": rows
-        })
+       
     });
 };
