@@ -1,0 +1,20 @@
+{
+  "name": "taxi-24-api",
+  "version": "1.0.0",
+  "description": "An Api Collection Base for Taxi",
+  "main": "main-app.js",
+  "scripts": {
+    "start": "nodemon main-app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gabriel Gyandoh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "md5": "^2.2.1",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
