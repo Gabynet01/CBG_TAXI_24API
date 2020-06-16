@@ -241,7 +241,7 @@ exports.drivers_within_distance = function (req, res) {
         // Total distance in KM
         var distanceInKM = calcCrow(lat1, lon1, lat2, lon2).toFixed(1);
 
-        // get the latitude and longitude
+        // calculate the latitude and longitude distance in KM
         function calcCrow(lat1, lon1, lat2, lon2) {
             var R = 6371; // km
             var latitudeDifference = toRad(lat2 - lat1);
@@ -266,17 +266,16 @@ exports.drivers_within_distance = function (req, res) {
             res.json({
                 "code": successCode,
                 "message": "success",
-                "data": {"distance": distanceInKM + "KM", "drivers": rows}
+                "data": { "distance": distanceInKM + "KM", "drivers": rows }
             })
         }
         else {
             res.json({
                 "code": successCode,
                 "message": "success",
-                "data": {"distance": distanceInKM + "KM", "drivers": rows}
+                "data": { "distance": distanceInKM + "KM", "drivers": rows }
             })
         }
 
-       
     });
 };
